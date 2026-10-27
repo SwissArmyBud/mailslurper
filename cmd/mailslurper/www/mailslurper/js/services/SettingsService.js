@@ -63,32 +63,35 @@ window.SettingsService = {
         })
     },
 
-    /**
-     * getServiceURL returns a fully formatted service URL
-     */
-    getServiceURL: function (serviceSettings) {
-        // var serviceSettings = window.SettingsService.retrieveServiceSettings();
-        var serviceAddress = serviceSettings.serviceAddress;
+	/**
+	 * getServiceURL returns a fully formatted service URL
+	 */
+	getServiceURL: function () {
+		var serviceSettings = window.SettingsService.retrieveServiceSettings();
+		var serviceURL = serviceSettings.url;
 
-        if (serviceAddress === "0.0.0.0") {
-            serviceAddress = window.location.hostname;
-        }
+		serviceURL = serviceURL.replace('0.0.0.0', window.location.hostname);
 
-        var protocol = (serviceSettings.isSSL) ? "https:" : "http:";
-        var serviceURL = protocol + "//" + serviceAddress + ":" + serviceSettings.servicePort;
-        return serviceURL;
-    },
+		return serviceURL;
+	},
 
-    /**
-     * retrieveSavedSearches reads saved searches from local storage
-     */
-    retrieveSavedSearches: function () {
-        if (localStorage["savedSearches"]) {
-            return JSON.parse(localStorage["savedSearches"]);
-        } else {
-            return [];
-        }
-    },
+	/**
+	 * getWWURL return the fully formatted app URL
+	 */
+	getAppURL: function () {
+		return $('meta[name=app-url]').attr('content')
+	},
+
+	/**
+	 * retrieveSavedSearches reads saved searches from local storage
+	 */
+	retrieveSavedSearches: function () {
+		if (localStorage["savedSearches"]) {
+			return JSON.parse(localStorage["savedSearches"]);
+		} else {
+			return [];
+		}
+	},
 
     /**
      * retrieveServiceSettings reads the MailSlurper service settings
