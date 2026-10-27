@@ -24,13 +24,6 @@ $ go generate
 $ go build
 ```
 
-Quickstart With Docker
-----------------------
-
-```bash
-docker run -it --rm --name mailslurper -p 8080:8080 -p 8085:8085 -p 2500:2500 ghcr.io/mailslurper/mailslurper
-```
-
 Library and Framework Credits
 -----------------------------
 This application uses a lot of great open source libraries.
